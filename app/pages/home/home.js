@@ -37,29 +37,34 @@ module.exports = class Page extends React.Component {
 		for (var name in vars)
 			vars[name] = parseFloat(vars[name].toPrecision(2));
 
-		console.log(vars);
+		vars['Omkrets'] = input;
+
 		this.setState({vars:vars})
 	}
 
 	renderResult() {
-/*
-*/
 
 		var A = <h3>-</h3>;
 		var B = <h3>-</h3>;
 
+
 		if (this.state.vars['Riktskärsdjup'] > 0)
-			A = <h3>{this.state.vars['Riktskärsdjup']}</h3>;
+			A = <h3>{this.state.vars['Riktskärsdjup']} cm</h3>;
 
 		if (this.state.vars['Brytmånslängd'] > 0 && this.state.vars['Brytmånsbredd'] > 0)
-			B = <h3>{this.state.vars['Brytmånslängd']} x {this.state.vars['Brytmånsbredd']}</h3>
+			B = <h3>{this.state.vars['Brytmånslängd']} cm x {this.state.vars['Brytmånsbredd']} cm</h3>
+
+		var listItemStyle = {};
+		listItemStyle.backgroundColor = 'hsl(220, 50%, 50%)';
+		listItemStyle.backgroundColor = 'hsla(218, 50%, 50%, 0.05)';
+		//listItemStyle.backgroundColor = 'red';
 
 		return (
 			<ListGroup>
-				<ListGroupItem header="Riktskärsdjup (cm)">
+				<ListGroupItem style={listItemStyle} header="Riktskärets djup">
 					{A}
 				</ListGroupItem>
-				<ListGroupItem header="Längd och bredd på brytmån (cm)">
+				<ListGroupItem style={listItemStyle} header="Längd och bredd på brytmån">
 					{B}
 				</ListGroupItem>
 			</ListGroup>
@@ -77,7 +82,7 @@ module.exports = class Page extends React.Component {
 				</div>
 
 				<div style={{paddingTop:'1em', paddingBottom:'1em', fontSize:'150%'}}>
-					<FormControl type='text' placeholder='Ange omkretsen på trädet' value={this.state.vars['Omkrets']} onChange={this.onChange} style={{fontSize:'inherit'}} >
+					<FormControl type='text' placeholder='Ange omkretsen på trädet här!' value={this.state.vars['Omkrets']} onChange={this.onChange} style={{fontSize:'inherit'}} >
 					</FormControl>
 				</div>
 				<div>
