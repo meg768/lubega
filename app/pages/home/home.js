@@ -22,10 +22,12 @@ module.exports = class Page extends React.Component {
 	onChange(event) {
 		var input = parseInt(event.target.value);
 
-		var diameter = input / Math.PI;
+		if (isNaN(input))
+			input = '';
+
 		var vars = {};
 
-		if (input > 1) {
+		if (input != '' && isNumber(input)) {
 			vars['Omkrets'] = input;
 			vars['Diameter'] = vars['Omkrets'] / Math.PI;
 			vars['Riktskärsdjup'] = vars['Diameter'] * 0.2;
@@ -57,7 +59,6 @@ module.exports = class Page extends React.Component {
 		var listItemStyle = {};
 		listItemStyle.backgroundColor = 'hsl(220, 50%, 50%)';
 		listItemStyle.backgroundColor = 'hsla(218, 50%, 50%, 0.05)';
-		//listItemStyle.backgroundColor = 'red';
 
 		return (
 			<ListGroup>
@@ -73,7 +74,12 @@ module.exports = class Page extends React.Component {
 	render() {
 
 		var rootStyle = {};
-		rootStyle.padding = '1em';
+		rootStyle.padding  = '1em';
+		rootStyle.position = 'absolute';
+		rootStyle.left     = 0;
+		rootStyle.top      = 0;
+		rootStyle.right    = 0;
+		rootStyle.bottom   = 0;
 
 		return (
 			<div id='home' style={rootStyle}>
