@@ -44,6 +44,28 @@ module.exports = class Page extends React.Component {
 		this.setState({vars:vars})
 	}
 
+	renderTree() {
+
+		var image = require('./images/tree.png');
+/*
+		if (isNumber(this.state.vars['Brytmånsbredd'])) {
+			image = require('./images/tree-down.png');
+		}
+		else {
+
+			image = require('./images/tree-up.png');
+		}
+*/
+		return (
+			<div style={{textAlign:'center'}}>
+				<img height='180px' src={image}/>
+			</div>
+
+		);
+
+
+	}
+
 	renderResult() {
 
 		var A = <h3>-</h3>;
@@ -94,9 +116,7 @@ module.exports = class Page extends React.Component {
 				<div>
 					{this.renderResult()}
 				</div>
-				<div style={{textAlign:'center'}}>
-					<img height='180px' src={require('./images/tree.png')}/>
-				</div>
+				{this.renderTree()}
 			</div>
 		);
 	}
